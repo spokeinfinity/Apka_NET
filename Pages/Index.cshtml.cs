@@ -1,4 +1,5 @@
 ﻿using Apka_NET.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Apka_NET.Pages
 {
@@ -26,11 +28,13 @@ namespace Apka_NET.Pages
 
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return Page();
+                HttpContext.Session.SetString("SessionAddress",
+                    JsonConvert.SerializeObject(Address));
+                return RedirectToPage("./AddressList");
             }
-            return RedirectToPage("./Privacy");
+            return Page();
         }
 
         public void OnGet()
