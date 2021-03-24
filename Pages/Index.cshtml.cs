@@ -30,9 +30,42 @@ namespace Apka_NET.Pages
         {
             if (ModelState.IsValid)
             {
-                HttpContext.Session.SetString("SessionAddress",
-                    JsonConvert.SerializeObject(Address));
-                return RedirectToPage("./AddressList");
+                int number;
+                if (Int32.TryParse(Address.NumberString, out number))
+                {
+                    Address.Number = number;
+                    if (Address.Number >= 1 && Address.Number <= 1000)
+                    {
+                        if(Address.Number %3 ==0 && Address.Number %5 !=0)
+                        {
+                            Address.Napis = "Fizz";
+                        }
+                        else if (Address.Number % 5 == 0 && Address.Number % 3 != 0)
+                        {
+                            Address.Napis = "Buzz";
+                        }
+                        else if (Address.Number % 3 == 0 && Address.Number % 5 == 0)
+                        {
+                            Address.Napis = "FizzBuzz";
+                        }
+                        else
+                        {
+                            Address.Napis = "Żadna";
+                        }
+                        Address.SystemTime = DateTime.Now;
+                        HttpContext.Session.SetString("SessionAddress", JsonConvert.SerializeObject(Address));
+                    }
+                    else
+                    {
+                        Address.Napis = "Błąd";
+                    }
+
+
+                }
+                else
+                {
+                    Address.Napis = "Błąd";
+                }
             }
             return Page();
         }

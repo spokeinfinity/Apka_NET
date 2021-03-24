@@ -9,25 +9,30 @@
     <br>
     <form method="post">
         <div class="form-row">
-            <div class="form-group col-md 6">
-                <span asp-validation-for="Address.Street" class="text-danger"></span>
-                <label asp-for="Address.Street"></label><br>
-                <input asp-for="Address.Street" />
-            </div>
             <div class="form-group col-md 4">
-                <label asp-for="Address.Number"></label><br>
-                <input asp-for="Address.Number" />
+                <span asp-validation-for="Address.NumberString" class="text-danger"></span>
+                <label asp-for="Address.NumberString"></label><br>
+                <input asp-for="Address.NumberString" />
             </div>
-            <div class="form-group col-md 8">
-                <label asp-for="Address.ZipCode"></label><br>
-                <input asp-for="Address.ZipCode" />
-            </div>
-            <div class="form-group col-md 10">
-                <label asp-for="Address.City"></label><br>
-                <input asp-for="Address.City" />
-            </div>
+         
         </div>
         <br>
         <button type="submit" class="btn btn-primary">Zatwierdź</button>
     </form>
+    @if (Model.Address != null)
+            {
+                <br/><br/>
+                @if (Model.Address.Napis == "Żadna")
+                {
+                    <p>Liczba @Model.Address.Number nie spełnia warunków FizzBuzz </p>
+                }
+                else if(Model.Address.Napis == "Błąd")
+                {
+                    <p>Podano złe dane!</p>
+                }
+                else if (!String.IsNullOrEmpty(Model.Address.Napis))
+                {
+                    <p>@Model.Address.Napis</p>
+                }
+            }
 </div>

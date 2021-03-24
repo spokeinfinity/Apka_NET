@@ -6,19 +6,17 @@
 @if (Model.Address != null)
 {
     <p>
-        @Html.DisplayNameFor(model => Model.Address.Street):
-    @Model.Address.Street
-</p>
-<p>
-    @Html.DisplayNameFor(model => Model.Address.City):
-@Model.Address.City
-</p>
-<p>
-    @Html.DisplayNameFor(model => Model.Address.Number):
-@Model.Address.Number
-</p>
-<p>
-    @Html.DisplayNameFor(model => Model.Address.ZipCode):
-@Model.Address.ZipCode
-</p>
+        @Html.DisplayNameFor(model => Model.Address.Napis):
+        @Model.Address.Number
+    </p>
+    <p>
+        @Html.DisplayNameFor(model => Model.Address.Number):
+        @Model.Address.Number
+    </p>
+    <p>
+        @Html.DisplayNameFor(model => Model.Address.SystemTime):
+        @Model.Address.Number
+    </p>
+
+
 }

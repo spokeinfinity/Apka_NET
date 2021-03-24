@@ -15,12 +15,10 @@ namespace Apka_NET.Pages
         public Address Address { get; set; }
         public void OnGet()
         {
-            var SessionAddress =
-        HttpContext.Session.GetString("SessionAddress");
+            var SessionAddress = HttpContext.Session.GetString("SessionAddress");
                 if (SessionAddress != null)
             {
-                Address =
-                    JsonConvert.DeserializeObject<Address>(SessionAddress);
+                Address = JsonConvert.DeserializeObject<Address>(SessionAddress);
             }
         }
     }
